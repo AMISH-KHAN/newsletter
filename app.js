@@ -17,7 +17,7 @@ app.post("/", (req, res) => {
     const url = "https://us21.api.mailchimp.com/3.0/lists/48f46ce5a5"
     const options = {
         method: "POST",
-        auth: `amishk:${process.env.Private_key}`
+        auth: `amishk:${process.env.API_KEY}`
     }
     const data = {
         members: [
