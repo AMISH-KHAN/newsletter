@@ -1,13 +1,15 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request")
-const https=require("https")
+const https = require("https")
+const dotenv = require('dotenv').config()
 const app = express();   
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
 })
+
 app.post("/", (req, res) => {
     const fname = req.body.fname;
     const lname = req.body.lname;
@@ -15,7 +17,7 @@ app.post("/", (req, res) => {
     const url = "https://us21.api.mailchimp.com/3.0/lists/48f46ce5a5"
     const options = {
         method: "POST",
-        auth: "amishk:a7527fe9ca79e78457021688b36ca628-us21"
+        auth: `amishk:${process.env.private_key}`
     }
     const data = {
         members: [
@@ -54,6 +56,4 @@ app.listen(process.env.PORT || 3000, () => {
 
 
 
-// apikey
-// a7527fe9ca79e78457021688b36ca628-us21
 // list id:48f46ce5a5
